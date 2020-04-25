@@ -30,8 +30,8 @@ namespace door_ver2_1
         string[,] room_code = new string[20, 2];
         Point moveForm = new Point(0, 0);
         int c_cnt;
-        string id = "20150107",
-                pwd = "dkstkd12!@";
+        string id = "",
+                pwd = "";
         string userid;
         private BackgroundWorker brk;
         string[,] door_ck;

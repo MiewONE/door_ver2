@@ -51,6 +51,7 @@
             this.submissionperiod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pl_body_mid_top = new System.Windows.Forms.Panel();
+            this.lb_reportcnt = new System.Windows.Forms.Label();
             this.lb_과제 = new System.Windows.Forms.Label();
             this.pl_body_top = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -74,9 +75,8 @@
             this.read = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pl_body_footer_top = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lb_reportcnt = new System.Windows.Forms.Label();
             this.lb_doorcnt = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.pl_top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -294,6 +294,17 @@
             this.pl_body_mid_top.Name = "pl_body_mid_top";
             this.pl_body_mid_top.Size = new System.Drawing.Size(878, 28);
             this.pl_body_mid_top.TabIndex = 0;
+            // 
+            // lb_reportcnt
+            // 
+            this.lb_reportcnt.AutoSize = true;
+            this.lb_reportcnt.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lb_reportcnt.Font = new System.Drawing.Font("휴먼편지체", 15F);
+            this.lb_reportcnt.Location = new System.Drawing.Point(770, 0);
+            this.lb_reportcnt.Name = "lb_reportcnt";
+            this.lb_reportcnt.Size = new System.Drawing.Size(104, 23);
+            this.lb_reportcnt.TabIndex = 1;
+            this.lb_reportcnt.Text = "과제 미제출";
             // 
             // lb_과제
             // 
@@ -534,27 +545,6 @@
             this.pl_body_footer_top.Size = new System.Drawing.Size(878, 28);
             this.pl_body_footer_top.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("휴먼편지체", 15F);
-            this.label1.Location = new System.Drawing.Point(12, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "door 조회현황";
-            // 
-            // lb_reportcnt
-            // 
-            this.lb_reportcnt.AutoSize = true;
-            this.lb_reportcnt.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lb_reportcnt.Font = new System.Drawing.Font("휴먼편지체", 15F);
-            this.lb_reportcnt.Location = new System.Drawing.Point(770, 0);
-            this.lb_reportcnt.Name = "lb_reportcnt";
-            this.lb_reportcnt.Size = new System.Drawing.Size(104, 23);
-            this.lb_reportcnt.TabIndex = 1;
-            this.lb_reportcnt.Text = "과제 미제출";
-            // 
             // lb_doorcnt
             // 
             this.lb_doorcnt.AutoSize = true;
@@ -565,6 +555,16 @@
             this.lb_doorcnt.Size = new System.Drawing.Size(123, 23);
             this.lb_doorcnt.TabIndex = 2;
             this.lb_doorcnt.Text = "door 조회현황";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("휴먼편지체", 15F);
+            this.label1.Location = new System.Drawing.Point(12, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 23);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "door 조회현황";
             // 
             // MiewOne_door
             // 
