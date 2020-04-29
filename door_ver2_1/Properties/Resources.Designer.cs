@@ -63,6 +63,26 @@ namespace door_ver2_1.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap czjpg {
+            get {
+                object obj = ResourceManager.GetObject("czjpg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap door_image {
+            get {
+                object obj = ResourceManager.GetObject("door_image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap download {
             get {
                 object obj = ResourceManager.GetObject("download", resourceCulture);
@@ -96,6 +116,26 @@ namespace door_ver2_1.Properties {
         internal static System.Drawing.Bitmap walk_kaka {
             get {
                 object obj = ResourceManager.GetObject("walk_kaka", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap ㅠㅠ {
+            get {
+                object obj = ResourceManager.GetObject("ㅠㅠ", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap ㅠㅠ1 {
+            get {
+                object obj = ResourceManager.GetObject("ㅠㅠ1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

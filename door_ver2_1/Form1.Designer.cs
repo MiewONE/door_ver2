@@ -43,6 +43,7 @@
             this.pl_body = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pl_body_mid = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.dGV_report = new System.Windows.Forms.DataGridView();
             this.sugang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.week = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +51,8 @@
             this.subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.submissionperiod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.pl_body_mid_top = new System.Windows.Forms.Panel();
             this.lb_reportcnt = new System.Windows.Forms.Label();
             this.lb_과제 = new System.Windows.Forms.Label();
@@ -61,12 +64,15 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.tbx_pwd = new System.Windows.Forms.TextBox();
             this.tbx_id = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pl_top_image = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pl_body_footer = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.dGV_door = new System.Windows.Forms.DataGridView();
             this.gang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.door_week = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,9 +80,12 @@
             this.content = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.read = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.pl_body_footer_top = new System.Windows.Forms.Panel();
             this.lb_doorcnt = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pl_top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -84,7 +93,9 @@
             this.pl_body.SuspendLayout();
             this.panel5.SuspendLayout();
             this.pl_body_mid.SuspendLayout();
+            this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_report)).BeginInit();
+            this.panel6.SuspendLayout();
             this.pl_body_mid_top.SuspendLayout();
             this.pl_body_top.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -94,7 +105,9 @@
             this.pl_top_image.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pl_body_footer.SuspendLayout();
+            this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dGV_door)).BeginInit();
+            this.panel8.SuspendLayout();
             this.pl_body_footer_top.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -192,13 +205,23 @@
             // 
             // pl_body_mid
             // 
-            this.pl_body_mid.Controls.Add(this.dGV_report);
+            this.pl_body_mid.Controls.Add(this.panel7);
+            this.pl_body_mid.Controls.Add(this.panel6);
             this.pl_body_mid.Controls.Add(this.pl_body_mid_top);
             this.pl_body_mid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_body_mid.Location = new System.Drawing.Point(0, 220);
             this.pl_body_mid.Name = "pl_body_mid";
             this.pl_body_mid.Size = new System.Drawing.Size(878, 211);
             this.pl_body_mid.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.dGV_report);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 28);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(845, 183);
+            this.panel7.TabIndex = 2;
             // 
             // dGV_report
             // 
@@ -207,7 +230,7 @@
             this.dGV_report.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGV_report.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dGV_report.BackgroundColor = System.Drawing.Color.White;
-            this.dGV_report.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedVertical;
+            this.dGV_report.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -233,12 +256,13 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dGV_report.DefaultCellStyle = dataGridViewCellStyle3;
             this.dGV_report.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dGV_report.Enabled = false;
             this.dGV_report.GridColor = System.Drawing.Color.White;
-            this.dGV_report.Location = new System.Drawing.Point(0, 28);
+            this.dGV_report.Location = new System.Drawing.Point(0, 0);
             this.dGV_report.Name = "dGV_report";
             this.dGV_report.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dGV_report.RowTemplate.Height = 23;
-            this.dGV_report.Size = new System.Drawing.Size(878, 183);
+            this.dGV_report.Size = new System.Drawing.Size(845, 183);
             this.dGV_report.TabIndex = 2;
             this.dGV_report.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_report_CellClick);
             // 
@@ -284,6 +308,28 @@
             this.YN.MinimumWidth = 6;
             this.YN.Name = "YN";
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.button3);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel6.Location = new System.Drawing.Point(845, 28);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(33, 183);
+            this.panel6.TabIndex = 1;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.Location = new System.Drawing.Point(0, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(33, 183);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "이동";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // pl_body_mid_top
             // 
             this.pl_body_mid_top.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -300,11 +346,10 @@
             this.lb_reportcnt.AutoSize = true;
             this.lb_reportcnt.Dock = System.Windows.Forms.DockStyle.Right;
             this.lb_reportcnt.Font = new System.Drawing.Font("휴먼편지체", 15F);
-            this.lb_reportcnt.Location = new System.Drawing.Point(770, 0);
+            this.lb_reportcnt.Location = new System.Drawing.Point(874, 0);
             this.lb_reportcnt.Name = "lb_reportcnt";
-            this.lb_reportcnt.Size = new System.Drawing.Size(104, 23);
+            this.lb_reportcnt.Size = new System.Drawing.Size(0, 23);
             this.lb_reportcnt.TabIndex = 1;
-            this.lb_reportcnt.Text = "과제 미제출";
             // 
             // lb_과제
             // 
@@ -335,17 +380,18 @@
             this.panel2.Controls.Add(this.lb_hello);
             this.panel2.Controls.Add(this.cB_site);
             this.panel2.Controls.Add(this.button2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(460, 0);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(459, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(418, 220);
+            this.panel2.Size = new System.Drawing.Size(419, 220);
             this.panel2.TabIndex = 10;
             // 
             // lb_hello
             // 
             this.lb_hello.AutoSize = true;
             this.lb_hello.Font = new System.Drawing.Font("함초롬바탕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lb_hello.ForeColor = System.Drawing.Color.Black;
             this.lb_hello.Location = new System.Drawing.Point(51, 99);
             this.lb_hello.Name = "lb_hello";
             this.lb_hello.Size = new System.Drawing.Size(0, 38);
@@ -353,10 +399,11 @@
             // 
             // cB_site
             // 
+            this.cB_site.Dock = System.Windows.Forms.DockStyle.Top;
             this.cB_site.FormattingEnabled = true;
-            this.cB_site.Location = new System.Drawing.Point(94, 20);
+            this.cB_site.Location = new System.Drawing.Point(0, 26);
             this.cB_site.Name = "cB_site";
-            this.cB_site.Size = new System.Drawing.Size(180, 20);
+            this.cB_site.Size = new System.Drawing.Size(419, 20);
             this.cB_site.TabIndex = 8;
             this.cB_site.Text = "클릭시 강의로 이동";
             this.cB_site.SelectedIndexChanged += new System.EventHandler(this.cB_site_SelectedIndexChanged);
@@ -364,11 +411,12 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(39, 15);
+            this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 26);
+            this.button2.Size = new System.Drawing.Size(419, 26);
             this.button2.TabIndex = 9;
             this.button2.Text = "과제";
             this.button2.UseVisualStyleBackColor = false;
@@ -388,9 +436,9 @@
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(6, 89);
+            this.button1.Location = new System.Drawing.Point(6, 98);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(62, 39);
+            this.button1.Size = new System.Drawing.Size(62, 49);
             this.button1.TabIndex = 1;
             this.button1.Text = "시작";
             this.button1.UseVisualStyleBackColor = false;
@@ -398,6 +446,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.tbx_pwd);
             this.panel3.Controls.Add(this.tbx_id);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(271, 0);
@@ -405,22 +455,42 @@
             this.panel3.Size = new System.Drawing.Size(115, 220);
             this.panel3.TabIndex = 6;
             // 
+            // tbx_pwd
+            // 
+            this.tbx_pwd.Location = new System.Drawing.Point(9, 126);
+            this.tbx_pwd.Name = "tbx_pwd";
+            this.tbx_pwd.PasswordChar = '*';
+            this.tbx_pwd.Size = new System.Drawing.Size(100, 21);
+            this.tbx_pwd.TabIndex = 3;
+            this.tbx_pwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbx_pwd_KeyDown);
+            // 
             // tbx_id
             // 
             this.tbx_id.Location = new System.Drawing.Point(9, 99);
             this.tbx_id.Name = "tbx_id";
             this.tbx_id.Size = new System.Drawing.Size(100, 21);
             this.tbx_id.TabIndex = 2;
+            this.tbx_id.Click += new System.EventHandler(this.tbx_id_Click);
             this.tbx_id.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbx_id_KeyDown);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(215, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(56, 220);
             this.panel1.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 129);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 12);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "비번";
             // 
             // label2
             // 
@@ -452,13 +522,23 @@
             // 
             // pl_body_footer
             // 
-            this.pl_body_footer.Controls.Add(this.dGV_door);
+            this.pl_body_footer.Controls.Add(this.panel9);
+            this.pl_body_footer.Controls.Add(this.panel8);
             this.pl_body_footer.Controls.Add(this.pl_body_footer_top);
             this.pl_body_footer.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pl_body_footer.Location = new System.Drawing.Point(0, 431);
             this.pl_body_footer.Name = "pl_body_footer";
             this.pl_body_footer.Size = new System.Drawing.Size(878, 215);
             this.pl_body_footer.TabIndex = 1;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.dGV_door);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(0, 28);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(845, 187);
+            this.panel9.TabIndex = 2;
             // 
             // dGV_door
             // 
@@ -484,11 +564,12 @@
             this.read,
             this.comment});
             this.dGV_door.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dGV_door.Location = new System.Drawing.Point(0, 28);
+            this.dGV_door.Enabled = false;
+            this.dGV_door.Location = new System.Drawing.Point(0, 0);
             this.dGV_door.Name = "dGV_door";
             this.dGV_door.RowHeadersWidth = 51;
             this.dGV_door.RowTemplate.Height = 23;
-            this.dGV_door.Size = new System.Drawing.Size(878, 187);
+            this.dGV_door.Size = new System.Drawing.Size(845, 187);
             this.dGV_door.TabIndex = 1;
             this.dGV_door.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_door_CellClick);
             // 
@@ -534,6 +615,28 @@
             this.comment.MinimumWidth = 6;
             this.comment.Name = "comment";
             // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.button4);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(845, 28);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(33, 187);
+            this.panel8.TabIndex = 1;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Location = new System.Drawing.Point(0, 0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(33, 187);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "이동";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // pl_body_footer_top
             // 
             this.pl_body_footer_top.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -550,11 +653,10 @@
             this.lb_doorcnt.AutoSize = true;
             this.lb_doorcnt.Dock = System.Windows.Forms.DockStyle.Right;
             this.lb_doorcnt.Font = new System.Drawing.Font("휴먼편지체", 15F);
-            this.lb_doorcnt.Location = new System.Drawing.Point(751, 0);
+            this.lb_doorcnt.Location = new System.Drawing.Point(874, 0);
             this.lb_doorcnt.Name = "lb_doorcnt";
-            this.lb_doorcnt.Size = new System.Drawing.Size(123, 23);
+            this.lb_doorcnt.Size = new System.Drawing.Size(0, 23);
             this.lb_doorcnt.TabIndex = 2;
-            this.lb_doorcnt.Text = "door 조회현황";
             // 
             // label1
             // 
@@ -565,6 +667,19 @@
             this.label1.Size = new System.Drawing.Size(123, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "door 조회현황";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "동의대",
+            "동명대"});
+            this.comboBox1.Location = new System.Drawing.Point(0, 0);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(115, 20);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.Text = "학교 선택";
             // 
             // MiewOne_door
             // 
@@ -587,7 +702,9 @@
             this.pl_body.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.pl_body_mid.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dGV_report)).EndInit();
+            this.panel6.ResumeLayout(false);
             this.pl_body_mid_top.ResumeLayout(false);
             this.pl_body_mid_top.PerformLayout();
             this.pl_body_top.ResumeLayout(false);
@@ -601,7 +718,9 @@
             this.pl_top_image.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.pl_body_footer.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dGV_door)).EndInit();
+            this.panel8.ResumeLayout(false);
             this.pl_body_footer_top.ResumeLayout(false);
             this.pl_body_footer_top.PerformLayout();
             this.ResumeLayout(false);
@@ -653,6 +772,15 @@
         private System.Windows.Forms.Label lb_hello;
         private System.Windows.Forms.Label lb_reportcnt;
         private System.Windows.Forms.Label lb_doorcnt;
+        private System.Windows.Forms.TextBox tbx_pwd;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
