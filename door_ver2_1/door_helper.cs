@@ -24,19 +24,21 @@ namespace door_ver2_1
             lectureRoom_door = "http://door.deu.ac.kr/LMS/LectureRoom/CourseLectureInfo/",
             lectureDoweek = "http://door.deu.ac.kr/LMS/LectureRoom/DoorWeeks/";
         //
-        ChromeDriverService driverService = ChromeDriverService.CreateDefaultService();
         private CookieContainer cookiecontainer = new CookieContainer();
-        IWebDriver dr = null;
+
         DataGridViewCellEventArgs e;
         string[,] room_code = new string[20, 2];
         Point moveForm = new Point(0, 0);
         int c_cnt;
-        string id = "",
+        private string id = "",
                 pwd = "";
         string userid;
         private BackgroundWorker brk;
         string[,] door_ck;
         info info = null;
+
+        selenium sn = new selenium();
+        webrequest web = new webrequest();
         public MiewOne_door()
         {
             InitializeComponent();
@@ -62,7 +64,6 @@ namespace door_ver2_1
 
         private void pl_top_MouseDown(object sender, MouseEventArgs e)
         {
-
             if (e.Button == MouseButtons.Left)
             {
                 moveForm = new Point(-e.X, -e.Y);
@@ -84,7 +85,7 @@ namespace door_ver2_1
         {
             if (panel3.Visible == false)
             {
-                if (DialogResult.Yes == MessageBox.Show("아이디와 비밀번호를 수정하시겠어요?","총총...",MessageBoxButtons.YesNo))
+                if (DialogResult.Yes == MessageBox.Show("아이디와 비밀번호를 수정하시겠어요?", "총총...", MessageBoxButtons.YesNo))
                 {
                     panel3.Visible = true;
                     panel1.Visible = true;
@@ -104,9 +105,6 @@ namespace door_ver2_1
             button4.Enabled = false;
             button3.Enabled = false;
             brk.RunWorkerAsync();
-
-
-
             //dGV_report.FirstDisplayedScrollingRowIndex = dGV_report.Rows.Count - 1;
         }
         private bool login()
@@ -117,6 +115,7 @@ namespace door_ver2_1
                 this.lb_hello.Font = new System.Drawing.Font("함초롬바탕", 14, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
                 lb_hello.Text = "작업 중 뜨는 창은 만지지 마세요!";
             }));
+
             string domstr = String.Empty;
             //_invoke(this, this.TopMost, true);
             if (this.InvokeRequired)
@@ -128,63 +127,58 @@ namespace door_ver2_1
             }
             try
             {
-                using (IWebDriver dr = new ChromeDriver())
+                if (this.InvokeRequired)
                 {
-
-                    dr.Url = "https://door.deu.ac.kr/sso/login.aspx";
-                    dr.Manage().Window.Minimize();
-                    driverService.HideCommandPromptWindow = true;
-
-                    if (this.InvokeRequired)
+                    this.Invoke(new MethodInvoker(delegate
                     {
-                        this.Invoke(new MethodInvoker(delegate
-                        {
-                            this.TopMost = false;
-                        }));
-                    }
-                    //_invoke(this, this.TopMost, false);
-                    IWebElement ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[2]/input"));
-                    ele.Clear();
-                    ele.SendKeys(id);
-                    ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[2]/td/input"));
-                    ele.Clear();
-                    ele.SendKeys(pwd);
-                    dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[3]/a")).Click();
-                    if (isAlertPresent(dr))
-                    {
-                        MessageBox.Show("아이디와 비밀번호를 확인해주세요");
-                        return false;
-                    }
-                    name = dr.FindElement(By.XPath("/html/body/div[2]/div[1]/div/div[1]/a[1]")).Text;
-                    //_invoke(lb_hello, lb_hello.Text, $"안녕하세요 {name}씨");
-                    foreach (var s in dr.Manage().Cookies.AllCookies)
-                    {
-                        System.Net.Cookie gs = new System.Net.Cookie();
-                        string[] f = s.ToString().Split(';');
-                        string[] g = f[0].Split('=');
-                        gs.Name = g[0];
-                        gs.Value = g[1];
-                        this.cookiecontainer.Add(new Uri("https://door.deu.ac.kr"), gs);
-                    }
+                        this.TopMost = false;
+                    }));
                 }
+                int select = 0;
+                cb_selectac.Invoke(new MethodInvoker(delegate
+                {
+                     select = cb_selectac.SelectedIndex;
+                }));
+                switch(select)
+                {
+                    case 0:
+                        name = sn.login_sn("https://door.deu.ac.kr/sso/login.aspx", id, pwd);
+                        break;
+                    case 1:
+                        name = sn.login_sn("https://ecampus.tu.ac.kr/", id, pwd);
+                        break;
+                    default:
+                        name = sn.login_sn("https://door.deu.ac.kr/sso/login.aspx", id, pwd);
+                        break;
+                }
+                
+                if (name == "로그인 실패")
+                {
+                    return false;
+                }
+                this.cookiecontainer = sn.getCooke();
+
             }
             catch
             {
-                if(DialogResult.Yes == MessageBox.Show("크롬 설치가 안되어있습니다. 설치하시겠습니까?","설치필요",MessageBoxButtons.YesNo))
+                if (DialogResult.Yes == MessageBox.Show("크롬 설치가 안되어있습니다. 설치하시겠습니까?", "설치필요", MessageBoxButtons.YesNo))
                 {
                     System.Diagnostics.Process.Start("https://www.google.com/intl/ko/chrome/");
+                    pl_top_image.Invoke(new MethodInvoker(delegate
+                    {
+                        pl_top_image.Visible = false;
+                    }));
                 }
                 else
                 {
                     return false;
                 }
             }
-            
 
-            #region 세션 가져오기
 
-            domstr = getSession(cookiecontainer, "http://door.deu.ac.kr/MyPage", "http://door.deu.ac.kr/");
 
+
+            domstr = web.getsession(cookiecontainer, "http://door.deu.ac.kr/MyPage", "http://door.deu.ac.kr/");
             string[] _class = domstr.Split('<'); // 52 + a(12)
             string[] code_class = new string[20];
             for (int i = 0, j = 0, k = 0; i < _class.Length; i++)
@@ -222,7 +216,7 @@ namespace door_ver2_1
             {
                 if (room_code[i, 0] != null)
                 {
-                    domstr = getSession(cookiecontainer, lectureRoom + room_code[i, 0], lectureRoom_main + room_code[i, 0]);
+                    domstr = web.getsession(cookiecontainer, lectureRoom + room_code[i, 0], lectureRoom_main + room_code[i, 0]);
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(domstr);
                     //string xpath = "/html/body/div[2]/div[2]/div[5]/form/div/div/table/tbody/tr[2]/td[4]";
@@ -277,13 +271,13 @@ namespace door_ver2_1
             #endregion
             for (int i = 0; i < room_code.Length; i++)//door 조회
             {
-                if(room_code[i, 0] != null)
+                if (room_code[i, 0] != null)
                 {
-                    if(i==7)
+                    if (i == 7)
                     {
                         Console.WriteLine();
                     }
-                    domstr = getSession(cookiecontainer, lectureRoom_door + room_code[i, 0], lectureRoom_main + room_code[i, 0]);
+                    domstr = web.getsession(cookiecontainer, lectureRoom_door + room_code[i, 0], lectureRoom_main + room_code[i, 0]);
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(domstr);
 
@@ -295,7 +289,7 @@ namespace door_ver2_1
                     //string[,] vs = new string[nodes.Count, 7];
                     door_ck = new string[door_nodes.Count + 10, 6];
 
-                    for (int j = 2; j <= door_nodes.Count+1; j++)
+                    for (int j = 2; j <= door_nodes.Count + 1; j++)
                     {
                         for (int k = 1; k <= 5; k++)
                         {
@@ -333,108 +327,17 @@ namespace door_ver2_1
 
             return true;
         }
-        private string getSession(CookieContainer cookiecontainer, string url, string refer)
-        {
-            string strSessionInfo = String.Empty;
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            WebHeaderCollection webHeader = req.Headers;
 
-            req.Accept = "*/*";
-            req.ProtocolVersion = HttpVersion.Version11;
-            req.KeepAlive = true;
-            req.ContentType = "application/x-www-form-urlencoded";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36";
-            req.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            req.Host = "door.deu.ac.kr";
-            req.Method = WebRequestMethods.Http.Get;
-            req.Referer = refer;
-            req.CookieContainer = this.cookiecontainer;
-            //쿠키 정보 출력
-            //if (req.CookieContainer.Count > 0)
-            //{
-            //    foreach (System.Net.Cookie cook in req.CookieContainer.GetCookies(new Uri(url)))
-            //    {
-            //        string c = String.Empty;
-            //        c += "Cookie:\n" + $"{cook.Name} = {cook.Value}\n" + $"Domain: {cook.Domain}\n" + $"Path: {cook.Path}\n" +
-            //            $"Secure: {cook.Secure}\n" +
-            //            $"When issued: {cook.TimeStamp}\n" +
-            //            $"Expires: {cook.Expires} (expired? {cook.Expired})\n" +
-            //            $"Don't save: {cook.Discard}\n" +
-            //            $"Comment: {cook.Comment}\n" +
-            //            $"Uri for comments: {cook.CommentUri}\n" +
-            //            $"Version: RFC {(cook.Version == 1 ? 2109 : 2965)}" +
-            //            $"String: {cook}";
-            //        MessageBox.Show(c);
-            //    }
-            //}
-            string Info = String.Empty;
-
-            #endregion
-
-
-            try
-            {
-                using (HttpWebResponse res = (HttpWebResponse)req.GetResponse())
-                {
-
-
-                    StreamReader sr = new StreamReader(res.GetResponseStream(), Encoding.UTF8);
-                    string strResult = sr.ReadToEnd();
-                    Console.WriteLine(res.ResponseUri);
-
-                    try
-                    {
-                        strSessionInfo = strResult;
-                    }
-                    finally
-                    {
-                        if (sr != null)
-                            sr.Close();
-                        //res.Dispose();
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.StackTrace);
-                MessageBox.Show("서버 요청이 실패하였습니다.");
-                Close();
-            }
-
-            strSessionInfo = strSessionInfo.Replace("\r\n", "");
-            strSessionInfo = strSessionInfo.Replace("\t", "");
-
-            return strSessionInfo;
-        }
 
         private void cB_site_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string[] infos = { id, pwd };
             if (button2.Text == "과제")
             {
                 if (cB_site.SelectedIndex >= 0)
                 {
                     //System.Diagnostics.Process.Start(lectureRoom + room_code[cB_site.SelectedIndex,0]);
-                    if (dr != null)
-                    {
-                        dr.Url = lectureRoom + room_code[cB_site.SelectedIndex, 0];
-                        driverService.HideCommandPromptWindow = true;
-                    }
-                    else
-                    {
-                        dr = new ChromeDriver();
-
-                        dr.Url = "https://door.deu.ac.kr/sso/login.aspx";
-                        IWebElement ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[2]/input"));
-                        ele.Clear();
-                        ele.SendKeys(id);
-                        ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[2]/td/input"));
-                        ele.Clear();
-                        ele.SendKeys(pwd);
-                        dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[3]/a")).Click();
-                        dr.Url = lectureRoom + room_code[cB_site.SelectedIndex, 0];
-                        driverService.HideCommandPromptWindow = true;
-
-                    }
+                    sn.link_mv(lectureRoom, room_code, cB_site.SelectedIndex, 0,infos);
 
                 }
             }
@@ -442,28 +345,7 @@ namespace door_ver2_1
             {
                 if (cB_site.SelectedIndex >= 0)
                 {
-                    if (dr != null)
-                    {
-                        dr.Url = lectureDoweek + room_code[cB_site.SelectedIndex, 0];
-                        driverService.HideCommandPromptWindow = true;
-                    }
-                    else
-                    {
-                        dr = new ChromeDriver();
-
-                        dr.Url = "https://door.deu.ac.kr/sso/login.aspx";
-                        IWebElement ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[2]/input"));
-                        ele.Clear();
-                        ele.SendKeys(id);
-                        ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[2]/td/input"));
-                        ele.Clear();
-                        ele.SendKeys(pwd);
-                        dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[3]/a")).Click();
-                        dr.Url = lectureRoom_door + room_code[cB_site.SelectedIndex, 0];
-                        driverService.HideCommandPromptWindow = true;
-
-                    }
-
+                    sn.link_mv(lectureRoom, room_code, cB_site.SelectedIndex, 0, infos);
                 }
 
             }
@@ -474,14 +356,14 @@ namespace door_ver2_1
             if (!login())
             {
                 cookiecontainer = new CookieContainer();
-                dr = null;
+                //dr = null;
                 id = "";
                 pwd = "";
                 lb_hello.Invoke(new MethodInvoker(delegate
                 {
                     lb_hello.Text = "";
                 }));
-                
+
                 userid = null;
 
                 tbx_id.Invoke(new MethodInvoker(delegate
@@ -525,12 +407,18 @@ namespace door_ver2_1
             {
                 this.e = e;
             }
-            
+
         }
 
-        private void visitweb(DataGridViewCellEventArgs e,Control ctl)
+        private void visitweb(DataGridViewCellEventArgs e, Control ctl)
         {
-            if(ctl==dGV_report)
+            string[] infos = { id, pwd };
+            if(e == null)
+            {
+                MessageBox.Show("데이터를 선택해주세요");
+                return;
+            }
+            if (ctl == dGV_report)
             {
                 string[] test = new string[10];
                 for (int i = 0; i < test.Length; i++)
@@ -549,37 +437,12 @@ namespace door_ver2_1
 
                     if (dGV_report.Rows[e.RowIndex].Cells[0].Value.ToString() == test[i])
                     {
-                        if (dr == null)
-                        {
-                            dr = new ChromeDriver();
-                            dr.Url = "https://door.deu.ac.kr/sso/login.aspx";
-                            IWebElement ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[2]/input"));
-                            ele.Clear();
-                            ele.SendKeys(id);
-                            ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[2]/td/input"));
-                            ele.Clear();
-                            ele.SendKeys(pwd);
-                            dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[3]/a")).Click();
-                        }
-                        dr.Url = lectureRoom + room_code[i, 0];
-                        driverService.HideCommandPromptWindow = true;
+                        sn.link_mv(lectureRoom, room_code, i, 0, infos);
                     }
                 }
             }
             else
             {
-                if (dr == null)
-                {
-                    dr = new ChromeDriver();
-                    dr.Url = "https://door.deu.ac.kr/sso/login.aspx";
-                    IWebElement ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[2]/input"));
-                    ele.Clear();
-                    ele.SendKeys(id);
-                    ele = dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[2]/td/input"));
-                    ele.Clear();
-                    ele.SendKeys(pwd);
-                    dr.FindElement(By.XPath("/html/body/form/div[2]/div[1]/div/table/tbody/tr[1]/td[3]/a")).Click();
-                }
                 string[] test = new string[10];
                 for (int i = 0; i < test.Length; i++)
                 {
@@ -594,27 +457,14 @@ namespace door_ver2_1
                 }
                 for (int i = 0; i < test.Length; i++)
                 {
-
                     if (dGV_door.Rows[e.RowIndex].Cells[0].Value.ToString() == test[i])
                     {
-
-
-
-
-                        dr.Url = lectureRoom_door + room_code[i, 0];
-
-
-                        driverService.HideCommandPromptWindow = true;
+                        sn.link_mv(lectureRoom_door, room_code, i, 0, infos);
                     }
                 }
             }
-            
-        }
-        private void cellclick(string para, DataGridViewCellEventArgs e)
-        {
 
         }
-
         private void dGV_door_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -715,7 +565,7 @@ namespace door_ver2_1
                 info.userinfo(id, pwd);
                 panel3.Visible = false;
                 panel1.Visible = false;
-                
+
                 this.lb_hello.ForeColor = System.Drawing.Color.Black;
                 this.lb_hello.Font = new System.Drawing.Font("함초롬바탕", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
                 button4.Enabled = true;
@@ -730,14 +580,14 @@ namespace door_ver2_1
                 {
                     lb_hello.Text = $"안녕하세요 {name}씨";
                 }
-                
+
                 if (dGV_door.RowCount <= 1)
                 {
                     lb_doorcnt.Text = "없졍";
                 }
                 else
                 {
-                    lb_doorcnt.Text = "아이구야 " + (dGV_door.RowCount-1).ToString() + "개나 안했네...";
+                    lb_doorcnt.Text = "아이구야 " + (dGV_door.RowCount - 1).ToString() + "개나 안했네...";
                 }
                 if (dGV_report.RowCount <= 1)
                 {
@@ -745,9 +595,9 @@ namespace door_ver2_1
                 }
                 else
                 {
-                    lb_reportcnt.Text = "아이구야... " + (dGV_report.RowCount-1).ToString() + "개나 해야해?";
+                    lb_reportcnt.Text = "아이구야... " + (dGV_report.RowCount - 1).ToString() + "개나 해야해?";
                 }
-                if(dGV_door.RowCount <=1 && dGV_report.RowCount <=1)
+                if (dGV_door.RowCount <= 1 && dGV_report.RowCount <= 1)
                 {
                     this.pictureBox3.Image = global::door_ver2_1.Properties.Resources.czjpg;
                 }
@@ -777,17 +627,7 @@ namespace door_ver2_1
         }
         #endregion
 
-        public bool isAlertPresent(IWebDriver dv)
-        {
-            try
-            {
-                dv.SwitchTo().Alert().Accept();
-                return true;
-            }   // try 
-            catch (NoAlertPresentException Ex)
-            {
-                return false;
-            }   // catch 
-        }   // isAlertPresent()
+    
     }
 }
+

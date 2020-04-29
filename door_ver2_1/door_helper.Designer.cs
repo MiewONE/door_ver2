@@ -64,6 +64,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cb_selectac = new System.Windows.Forms.ComboBox();
             this.tbx_pwd = new System.Windows.Forms.TextBox();
             this.tbx_id = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -85,7 +86,6 @@
             this.pl_body_footer_top = new System.Windows.Forms.Panel();
             this.lb_doorcnt = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pl_top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -446,7 +446,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.cb_selectac);
             this.panel3.Controls.Add(this.tbx_pwd);
             this.panel3.Controls.Add(this.tbx_id);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
@@ -454,6 +454,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(115, 220);
             this.panel3.TabIndex = 6;
+            // 
+            // cb_selectac
+            // 
+            this.cb_selectac.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cb_selectac.FormattingEnabled = true;
+            this.cb_selectac.Items.AddRange(new object[] {
+            "동의대",
+            "동명대"});
+            this.cb_selectac.Location = new System.Drawing.Point(0, 0);
+            this.cb_selectac.Name = "cb_selectac";
+            this.cb_selectac.Size = new System.Drawing.Size(115, 20);
+            this.cb_selectac.TabIndex = 11;
+            this.cb_selectac.Text = "학교 선택";
             // 
             // tbx_pwd
             // 
@@ -668,19 +681,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "door 조회현황";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "동의대",
-            "동명대"});
-            this.comboBox1.Location = new System.Drawing.Point(0, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(115, 20);
-            this.comboBox1.TabIndex = 11;
-            this.comboBox1.Text = "학교 선택";
-            // 
             // MiewOne_door
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -780,7 +780,7 @@
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cb_selectac;
     }
 }
 
